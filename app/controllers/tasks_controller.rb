@@ -38,7 +38,12 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1
   def destroy
-    @task.destroy
+    if @task.destroy
+      render json: @task
+    else 
+      render json: {error: "Cannot delete task"}
+    end 
+
   end
 
   private
